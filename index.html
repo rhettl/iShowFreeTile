@@ -25,6 +25,12 @@
             }
             
             $(function(){
+                $contWidth = 1500;
+                $('#container').width($contWidth);
+                $cols = 3;
+                $margin = 5;
+                
+                
                 $filterContainer = $('#filters');
                 $tileContainer = $('#fill');
                 $numDivs = 50;
@@ -56,7 +62,7 @@
                         cat += "other";
                     }
                     
-                    $('<div style="background-color: #6B6B6B; border: #fff; margin: 5px"><img src="images/'+(i%8)+'.jpg" class="item '+cat+'" /></div>').appendTo($tileContainer);
+                    $('<div ><img style="padding: '+$margin+'px" width="'+(($contWidth / $cols) - (2 * $margin))+'px" src="images/'+(i%8)+'.jpg" class="item '+cat+'" /></div>').appendTo($tileContainer);
                 }
                 
                 $.each(cats, function (i, v){
@@ -76,7 +82,7 @@
     </head>
     <body>
         <div id="filters"></div>
-        <div id="container" style="width: 1200px; overflow: hidden">
+        <div id="container" style="">
             <div id="fill"></div>
         </div>
     </body>
