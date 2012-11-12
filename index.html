@@ -25,6 +25,11 @@
                     $divs += '<div style="height: '+h+'px; width: '+w+'px; background-color: #6B6B6B; border: #fff; margin: 5px" class="item"></div>';
                 }
                 $('#fill').html($divs);
+                
+                $('#fill').freetile({
+                    animate: true,
+                    elementDelay: 50
+                });
             });
         </script>
     </head>
