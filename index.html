@@ -27,7 +27,7 @@
             $(function(){
                 $contWidth = 1500;
                 $('#container').width($contWidth);
-                $cols = 3;
+                $cols = 4;
                 $margin = 5;
                 
                 
@@ -62,7 +62,7 @@
                         cat += "other";
                     }
                     
-                    $('<div ><img style="padding: '+$margin+'px" width="'+(($contWidth / $cols) - (2 * $margin))+'px" src="images/'+(i%8)+'.jpg" class="item '+cat+'" /></div>').appendTo($tileContainer);
+                    $('<div style="margin: '+$margin+'px"><img width="'+(($contWidth / $cols) - (2 * $margin))+'px" src="images/'+(i%8)+'.jpg" class="item '+cat+'" /></div>').appendTo($tileContainer);
                 }
                 
                 $.each(cats, function (i, v){
