@@ -3,9 +3,12 @@
     <head>
         <title>iShow FreeTile</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" href="fbox/jquery.fancybox.css"/>
         
         <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
         <script type="text/javascript" src="js/jquery.freetile.min.js"></script>
+        <script type="text/javascript" src="fbox/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="fbox/jquery.fancybox.pack.js"></script>
         
         <script type="text/javascript">
             var $tileContainer;
@@ -62,7 +65,7 @@
                         cat += "other";
                     }
                     
-                    $('<div style="margin: '+$margin+'px"><img width="'+(($contWidth / $cols) - (2 * $margin))+'px" src="images/'+(i%8)+'.jpg" class="item '+cat+'" /></div>').appendTo($tileContainer);
+                    $('<div><a href="images/'+(i%8)+'.jpg" rel="gallery" class="item '+cat+'"><img width="'+(($contWidth / $cols) - (2 * $margin))+'px" style="margin: '+$margin+'px" src="images/'+(i%8)+'.jpg" /></a></div>').appendTo($tileContainer);
                 }
                 
                 $.each(cats, function (i, v){
@@ -75,7 +78,8 @@
                     filterFor($(e.target).attr("filter"));
                     updateTiles($tileContainer);
                 });
-                                
+                
+                $('a.item').fancybox();
                 updateTiles($tileContainer);
             });
         </script>
