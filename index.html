@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>iShow FreeTile</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="js/jquery.freetile.min.js"></script>
+        
+        <script type="text/javascript">
+            $(function(){
+                $divs = ''
+                $numDivs = 50;
+                height = {
+                    max: 500,
+                    min: 20
+                }
+                width = {
+                    max: 200,
+                    min: 20
+                }
+                for(i = 0; i < $numDivs; i ++){
+                    h = ((Math.random() * (height.max - height.min)) + 1) + height.min;
+                    w = ((Math.random() * (width.max - width.min)) + 1) + width.min;
+                    $divs += '<div style="height: '+h+'px; width: '+w+'px; background-color: #6B6B6B; border: #fff; margin: 5px" class="item"></div>';
+                }
+                $('#fill').html($divs);
+            });
+        </script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="container" style="width: 1000px">
+            <div id="fill"></div>
+        </div>
     </body>
 </html>
