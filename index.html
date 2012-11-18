@@ -9,13 +9,8 @@
         <script type="text/javascript" src="js/jquery.isotope.js"></script>
         
         <script type="text/javascript">
-            
-            function filterFor(filter){
-//                $('.item').show(0);
-//                if (filter != ''){
-//                    $('.item').not('.'+filter).hide();
-//                }
-            }
+            var $tileContainer = '#fill',
+                $filterContainer = '#filters';
             
             $(function(){
                 $divs = ''
@@ -28,21 +23,51 @@
                     max: 200,
                     min: 20
                 }
+                cats = {
+                    celebs: "Celebrities",
+                    sports: "Sports"
+                }
                 for(i = 0; i < $numDivs; i ++){
                     h = ((Math.random() * (height.max - height.min)) + 1) + height.min;
                     w = ((Math.random() * (width.max - width.min)) + 1) + width.min;
-                    $divs += '<div style="height: '+h+'px; width: '+w+'px; background-color: #6B6B6B; border: #fff; margin: 5px" class="item"></div>';
+                    cat = '';
+                    
+                    $.each(cats, function (index, v){
+                        $include = Boolean(Math.round(Math.random()));
+                        if ($include) {
+                            cat += index + " ";
+                        }
+                    });
+                    
+                    if (cat == ''){
+                        cat += "other";
+                    }
+                    
+                    $('<div style="height: '+h+'px; width: '+w+'px; background-color: #6B6B6B; border: #fff; margin: 5px" class="item '+cat+'"></div>').appendTo($tileContainer);
                 }
-                $('#fill').html($divs);
                 
-                $('#fill').isotope();
+                $.each(cats, function (i, v){
+                    $('<button filter=".'+i+'" class="filter-btn">'+v+'</button>').appendTo($filterContainer);
+                });
+                $('<button filter=".other" class="filter-btn">All Others</button>').appendTo($filterContainer);
+                $('<button filter="*" class="filter-btn">All</button>').appendTo($filterContainer);
+
+                $('.filter-btn').click(function (e){
+                    $($tileContainer).isotope({
+                        filter: $(e.target).attr("filter")
+                    });
+                });
+                
+                $($tileContainer).isotope({
+                    itemSelector: '.item',
+                    layoutMode : 'masonry'
+                });
                 
             });
         </script>
     </head>
     <body>
-        <div id="container" style="width: 1000px">
-            <div id="fill"></div>
-        </div>
+        <div id="filters"></div>
+        <div id="fill"></div>
     </body>
 </html>
