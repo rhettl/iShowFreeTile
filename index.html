@@ -11,13 +11,15 @@
         <script type="text/javascript" src="fbox/jquery.fancybox.js"></script>
         <script type="text/javascript" src="fbox/jquery.fancybox.pack.js"></script>
         
-        
         <script type="text/javascript">
             var $tileContainer = '#fill',
                 $filterContainer = '#filters';
             
             $(function(){
                 $numDivs = 50;
+                $numCols = 4;
+                $containerWidth = 1000;
+                $margin = 2.5;
                 height = {
                     max: 500,
                     min: 20
@@ -30,6 +32,7 @@
                     celebs: "Celebrities",
                     sports: "Sports"
                 }
+                $($tileContainer).width($containerWidth);
                 for(i = 0; i < $numDivs; i ++){
                     h = ((Math.random() * (height.max - height.min)) + 1) + height.min;
                     w = ((Math.random() * (width.max - width.min)) + 1) + width.min;
@@ -46,7 +49,9 @@
                         cat += "other";
                     }
                     
-                    $('<div style="height: '+h+'px; width: '+w+'px; background-color: #6B6B6B; border: #fff; margin: 5px" class="item '+cat+'"></div>').appendTo($tileContainer);
+                    wid = parseInt(($containerWidth / $numCols) - ($margin * 2));
+                    
+                    $('<img style="width: ' + wid + 'px; margin: '+$margin+'px" class="item '+cat+'" src="images/'+(i%8)+'.jpg" />').appendTo($tileContainer);
                 }
                 
                 $.each(cats, function (i, v){
