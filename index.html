@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>iShow Isotope FBox</title>
+        <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" href="css/style.css" rel="stylesheet" />
         <link type="text/css" href="fbox/jquery.fancybox.css" rel="stylesheet" />
@@ -10,72 +10,44 @@
         <script type="text/javascript" src="js/jquery.isotope.js"></script>
         <script type="text/javascript" src="fbox/jquery.fancybox.js"></script>
         <script type="text/javascript" src="fbox/jquery.fancybox.pack.js"></script>
-        
         <script type="text/javascript">
-            var $tileContainer = '#fill',
-                $filterContainer = '#filters';
-            
             $(function(){
-                $numDivs = 50;
-                $numCols = 4;
-                $containerWidth = 1000;
-                $margin = 2.5;
-                height = {
-                    max: 500,
-                    min: 20
-                }
-                width = {
-                    max: 200,
-                    min: 20
-                }
-                cats = {
-                    celebs: "Celebrities",
-                    sports: "Sports"
-                }
-                $($tileContainer).width($containerWidth);
-                for(i = 0; i < $numDivs; i ++){
-                    h = ((Math.random() * (height.max - height.min)) + 1) + height.min;
-                    w = ((Math.random() * (width.max - width.min)) + 1) + width.min;
-                    cat = '';
-                    
-                    $.each(cats, function (index, v){
-                        $include = Boolean(Math.round(Math.random()));
-                        if ($include) {
-                            cat += index + " ";
-                        }
-                    });
-                    
-                    if (cat == ''){
-                        cat += "other";
-                    }
-                    
-                    wid = parseInt(($containerWidth / $numCols) - ($margin * 2));
-                    
-                    $('<img style="width: ' + wid + 'px; margin: '+$margin+'px" class="item '+cat+'" src="images/'+(i%8)+'.jpg" />').appendTo($tileContainer);
-                }
-                
-                $.each(cats, function (i, v){
-                    $('<button filter=".'+i+'" class="filter-btn">'+v+'</button>').appendTo($filterContainer);
-                });
-                $('<button filter=".other" class="filter-btn">All Others</button>').appendTo($filterContainer);
-                $('<button filter="*" class="filter-btn">All</button>').appendTo($filterContainer);
+                $cont = $('#fill');
+                $contWidth = $cont.width();
+                $cols = 4;
+                $margin = 3;
+                $unit = ($contWidth / $cols) - (2 * $margin); 
 
-                $('.filter-btn').click(function (e){
-                    $($tileContainer).isotope({
-                        filter: $(e.target).attr("filter")
-                    });
+                $('img').each(function(){
+                    $(this).width($unit);
                 });
                 
-                $($tileContainer).isotope({
-                    itemSelector: '.item',
+                $cont.isotope({
+                    itemSelector: 'img',
                     layoutMode : 'masonry'
-                });
-                
+                }); 
             });
         </script>
     </head>
     <body>
         <div id="filters"></div>
-        <div id="fill"></div>
+        <div id="fill" style="width: 1000px">
+            <img src="images/0.jpg" />
+            <img src="images/1.jpg" />
+            <img src="images/2.jpg" />
+            <img src="images/3.jpg" />
+            <img src="images/4.jpg" />
+            <img src="images/5.jpg" />
+            <img src="images/6.jpg" />
+            <img src="images/7.jpg" />
+            <img src="images/8.jpg" />
+            <img src="images/9.jpg" />
+            <img src="images/10.jpg" />
+            <img src="images/11.jpg" />
+            <img src="images/12.jpg" />
+            <img src="images/13.jpg" />
+            <img src="images/14.jpg" />
+            <img src="images/15.jpg" />
+        </div>
     </body>
 </html>
